@@ -105,6 +105,48 @@ const openLiveCamera = () => {
   navigator.mediaDevices.getUserMedia({ video: true })
     .then((stream) => {
       console.log('Camera access granted');
+            // Example of how to edit hints 
+      const customHints = {
+        moveCloserHint: {
+          title: "Please bring the document closer",
+          description: "Your document is too far away to be captured correctly"
+        },
+        outOfFrameHint: {
+          title: "This document is out of frame",
+          description: "Your document is out of frame"
+        },
+
+        capturingHint: {
+          title: "Capture Hint",
+          description: "Example text for helpful capture hint"
+        },
+
+        fixBlurHint: {
+          title: "There is currently too much blur - please hold device steady",
+          description: "Fix Blur Hint"
+        },
+
+        fixGlareHint: {
+          title: "There is currently too much glare - please check room lighting",
+          description: "Fix Glare Hint"
+        },
+      };
+
+      // General Info - String array to display some quick general info on start 
+      // expects two string arrays, which are the instructions for auto or tap capture
+      const customInfo =["Instructions for Auto Capture", "Instructions for Tap Capture"]
+
+      //  texts here are for the AutoCapture Button and the Alert text
+      const customTexts = {
+        autoCaptureText: "AutoCapture Button Text",
+        autoCaptureOnText: "AutoCapture Text On",
+        autoCaptureOffText: "AutoCapture Text Off",
+        alertText: "Alert!"
+      };
+      
+      liveDocumentCamera.generalInfoTexts = customInfo;
+      liveDocumentCamera.texts = customTexts;
+      liveDocumentCamera.hints = customHints;
 
       liveDocumentCamera.forceManualCamera = false;
       menuButtons.style.display = 'none';
