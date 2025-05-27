@@ -70,6 +70,20 @@ const openLiveCamera = () => {
   navigator.mediaDevices.getUserMedia({ video: true })
     .then(function(stream) {
       console.log('Camera access granted');
+        // *** Custom hints for face detection
+
+      const customFaceHints = {
+          notInitializedHint : "Not Initialized!",
+          initializingHint: "Initialized!",
+          faceNotFoundHint: "The face was not found - are you in the frame?",
+          tooManyFaceHint: "Too many faces are detected!",
+          faceAngleTooLargeHint: "Face angle is too large!",
+          probabilityTooSmallHint: "Probablity is too small!",
+          faceTooSmallHint: "Face is too small!",
+          faceCloseToBorderHint: "Pull the camera away - face is too close to border!"
+        };
+        
+      liveFaceCamera.hints = customFaceHints;
       livenessResult.style.display = 'none';
       liveFaceCamera.isOpen = true;
       errorCamera.style.display = 'none';
